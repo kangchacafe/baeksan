@@ -876,7 +876,7 @@ async function addGuestbook() {
 
   if (error) {
     console.error(error);
-    alert('게시글 등록에 실패했습니다.');
+   alert('게시글 등록에 실패했습니다.\n\n' + error.message);
     return;
   }
 
