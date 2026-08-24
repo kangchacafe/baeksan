@@ -862,7 +862,7 @@ async function addGuestbook() {
     return;
   }
 
-  const name = nameEl.value.trim() || '지나가던 나그네';
+  const name = nameEl.value.trim() || '익명';
 
   const { data, error } = await supabaseClient
     .from('posts')
