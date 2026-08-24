@@ -824,7 +824,7 @@ const emptyStateHtml = `
 async function renderGuestbook() {
   const el = document.getElementById('gbList');
 
-  const { data, error } = await supabase
+  const { data, error } = await supabaseClient
     .from('posts')
     .select('*')
     .order('created_at', { ascending: false });
@@ -864,7 +864,7 @@ async function addGuestbook() {
 
   const name = nameEl.value.trim() || '지나가던 나그네';
 
-  const { data, error } = await supabase
+  const { data, error } = await supabaseClient
     .from('posts')
     .insert([
       {
@@ -1009,7 +1009,7 @@ updateTopstripCounts();
 const SUPABASE_URL = 'https://ecoxamuoiooqntwwpitf.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_KPIq4p59hWRpU2peaY1_sQ_2QSrLt11';
 
-const supabase = window.supabase.createClient(
+const supabaseClient = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
