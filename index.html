@@ -834,17 +834,39 @@ function renderGuestbook(){
     </div>`).join('');
 }
 
-function addGuestbook(){
+async function addGuestbook(){
   const nameEl = document.getElementById('gbName');
   const msgEl = document.getElementById('gbMsg');
+
   const msg = msgEl.value.trim();
-  if(!msg){ msgEl.focus(); return; }
+  if (!msg) {
+    msgEl.focus();
+    return;
+  }
+
   const name = nameEl.value.trim() || '지나가던 나그네';
-  guestbook.push({name, date:todayIn1998(), msg});
-  nameEl.value=''; msgEl.value='';
-  renderGuestbook();
+
+  const { data, error } = await supabase
+    .from('posts')
+    .insert([
+      {
+        author: name,
+        content: msg
+      }
+    ])
+    .select();
+
+  if (error) {
+    console.error(error);
+    alert('게시글 등록에 실패했습니다.');
+    return;
+  }
+
+  nameEl.value = '';
+  msgEl.value = '';
+
+  loadGuestbook();
   renderRecentPosts();
-  updateTopstripCounts();
 }
 
 function renderRecentPosts(){
