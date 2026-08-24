@@ -964,5 +964,17 @@ renderSystemClock();
 setInterval(renderSystemClock, 1000);
 updateTopstripCounts();
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = 'https://ecoxamuoiooqntwwpitf.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_KPIq4p59hWRpU2peaY1_sQ_2QSrLt11';
+
+const supabase = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+</script>
+
 </body>
 </html>
