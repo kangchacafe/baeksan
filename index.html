@@ -821,24 +821,42 @@ const emptyStateHtml = `
     <div>아직 등록된 글이 없습니다. 첫 글을 작성해보세요.</div>
   </div>`;
 
-function renderGuestbook(){
+async function renderGuestbook() {
   const el = document.getElementById('gbList');
-  if(guestbook.length === 0){
+
+  const { data, error } = await supabase
+    .from('posts')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error(error);
+    el.innerHTML = '<p>게시글을 불러오지 못했습니다.</p>';
+    return;
+  }
+
+  if (!data || data.length === 0) {
     el.innerHTML = emptyStateHtml;
     return;
   }
-  el.innerHTML = guestbook.slice().reverse().map(g=>`
+
+  el.innerHTML = data.map(g => `
     <div class="gb-entry">
-      <div class="gb-head"><span>${escapeHtml(g.name)}</span><span class="gb-date">${g.date}</span></div>
-      <div class="gb-body">${escapeHtml(g.msg)}</div>
-    </div>`).join('');
+      <div class="gb-head">
+        <span>${escapeHtml(g.author)}</span>
+        <span class="gb-date">${g.created_at}</span>
+      </div>
+      <div class="gb-body">${escapeHtml(g.content)}</div>
+    </div>
+  `).join('');
 }
 
-async function addGuestbook(){
+async function addGuestbook() {
   const nameEl = document.getElementById('gbName');
   const msgEl = document.getElementById('gbMsg');
 
   const msg = msgEl.value.trim();
+
   if (!msg) {
     msgEl.focus();
     return;
@@ -865,7 +883,7 @@ async function addGuestbook(){
   nameEl.value = '';
   msgEl.value = '';
 
-  loadGuestbook();
+  renderGuestbook();
   renderRecentPosts();
 }
 
