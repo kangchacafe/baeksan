@@ -996,7 +996,6 @@ function renderSystemClock(){
 
 /* ---------------- init ---------------- */
 renderNoticeList();
-renderGuestbook();
 renderRecentPosts();
 renderFolders();
 initGalleryCaptions();
@@ -1014,7 +1013,10 @@ const supabase = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
-</script>
 
+</script>
+<script>
+renderGuestbook();
+</script>
 </body>
 </html>
