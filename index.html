@@ -371,6 +371,36 @@
 
   .hidden{display:none !important;}
 
+  .school-news {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.news-card {
+  min-width: 0;
+}
+
+.news-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #eee;
+}
+
+.news-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.news-title {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.4;
+  word-break: keep-all;
+}
 @media (max-width:720px) {
 
     html,
@@ -556,10 +586,60 @@
             </div>
           </div>
 
-          <div class="card">
-            <h2><span class="htitle"><svg class="icon"><use href="#i-inbox"/></svg>최근 게시글</span><a class="more" href="#" onclick="goPage('guestbook');return false;">더보기 +</a></h2>
-            <div class="inner" id="recentPostsBox"></div>
-          </div>
+    <div class="card">
+  <h2>
+    <span class="htitle">
+      <svg class="icon"><use href="#i-inbox"/></svg>
+      교내 뉴스
+    </span>
+  </h2>
+
+  <div class="school-news">
+
+    <div class="news-card">
+      <div class="news-thumb">
+        <img src="images/news-01.jpg" alt="">
+      </div>
+      <div class="news-title">2027학년도 법학과 신입생 모집 안내</div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-thumb">
+        <img src="images/news-02.jpg" alt="">
+      </div>
+      <div class="news-title">법학과 과잠 신청 안내</div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-thumb">
+        <img src="images/news-03.jpg" alt="">
+      </div>
+      <div class="news-title">2026학년도 2학기 학사 일정 안내</div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-thumb">
+        <img src="images/news-04.jpg" alt="">
+      </div>
+      <div class="news-title">교내 축제 및 학생회 행사 안내</div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-thumb">
+        <img src="images/news-05.jpg" alt="">
+      </div>
+      <div class="news-title">법학과 학생회 주요 소식</div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-thumb">
+        <img src="images/news-06.jpg" alt="">
+      </div>
+      <div class="news-title">이번 주 캠퍼스 주요 일정</div>
+    </div>
+
+  </div>
+</div>
 
         </div>
       </div>
