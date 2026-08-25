@@ -674,18 +674,32 @@
 
           </div>
 
-          <!-- 폴더: 특전 -->
-          <div class="gallery-grid gallery-set hidden" id="gal-perks">
+<!-- 폴더: 법학과 과잠 -->
+<div class="gallery-grid gallery-set hidden" id="gal-perks">
 
-            <!-- ADMIN: ADD RECORD ROOM IMAGE HERE -->
-            <figure class="g-item" onclick="openLightbox(this)">
-              <div class="g-thumb">
-                <img class="rr-img" src="images/example4.jpg" title="음료 특전" onerror="this.closest('.g-item').classList.add('img-missing')">
-              </div>
-              <figcaption class="g-cap-title"></figcaption>
-            </figure>
+  <!-- 과잠 디자인 -->
+  <figure class="g-item" onclick="openLightbox(this)">
+    <div class="g-thumb">
+      <img class="rr-img"
+           src="images/과잠-디자인.jpg"
+           title="디자인"
+           onerror="this.closest('.g-item').classList.add('img-missing')">
+    </div>
+    <figcaption class="g-cap-title">디자인</figcaption>
+  </figure>
 
-          </div>
+  <!-- 과잠 사이즈표 -->
+  <figure class="g-item" onclick="openLightbox(this)">
+    <div class="g-thumb">
+      <img class="rr-img"
+           src="images/과잠 사이즈표.PNG"
+           title="사이즈표"
+           onerror="this.closest('.g-item').classList.add('img-missing')">
+    </div>
+    <figcaption class="g-cap-title">사이즈표</figcaption>
+  </figure>
+
+</div>
           <div class="listfoot">
             <button class="btn-mini" onclick="closeGallery()">◀ 기록실로</button>
           </div>
@@ -801,7 +815,7 @@ let guestbook = [];
 const folders = [
   {name:'학내 사진', key:'illust'},
   {name:'학생회 명단', key:'roster'},
-  {name:'특전', key:'perks'}
+  {name:'법학과 과잠', key:'perks'}
 ];
 
 /* ---------------- date helper (forced year 1998) ---------------- */
