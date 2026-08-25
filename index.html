@@ -368,22 +368,28 @@
 
   .hidden{display:none !important;}
 
-  @media (max-width:720px){
-    header{padding:16px;}
-    header h1{font-size:20px;}
-    .headright{width:100%;text-align:left;}
-    header img.seal{width:46px;height:46px;}
-    nav .navlinks{width:100%;}
-    nav button{padding:12px 14px;font-size:12.5px;flex:1 1 auto;justify-content:center;}
-    nav .searchwrap{margin:10px auto;width:calc(100% - 24px);}
-    nav .searchwrap input{width:100%;}
-    .layout{flex-direction:column;}
-    .layout .side{width:100%;flex:none;order:2;}
-    .layout .content{order:1;}
-    table.board td.meta{display:none;}
-    .logoWrap{min-height:90px;}
-    .logoWrap img{max-height:100px;}
-  }
+ @media (max-width:720px) {
+
+    body {
+        min-width: 1100px;
+        overflow-x: auto;
+    }
+
+    .layout {
+        flex-direction: row;
+    }
+
+    .layout .side {
+        width: 220px;
+        flex: 0 0 220px;
+        order: initial;
+    }
+
+    .layout .content {
+        order: initial;
+    }
+
+}
 </style>
 </head>
 <body>
