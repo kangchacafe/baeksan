@@ -161,60 +161,6 @@
   .card h2 .htitle{display:flex;align-items:center;gap:9px;}
   .card h2 .more{font-size:11px;color:#c3cae6;font-weight:normal;}
   .card .inner{padding:20px;}
-  .campus-news-item{
-  display:flex;
-  gap:12px;
-  padding:8px 0;
-  border-bottom:1px dashed var(--border);
-}
-
-.campus-news-item:last-child{
-  border-bottom:none;
-}
-
-.campus-news-thumb{
-  width:95px;
-  height:68px;
-  flex:0 0 95px;
-  object-fit:cover;
-  border:1px solid var(--border);
-}
-
-.campus-news-text{
-  min-width:0;
-  flex:1;
-  height:68px;
-  display:flex;
-  flex-direction:column;
-}
-
-.campus-news-title{
-  font-size:12.5px;
-  font-weight:bold;
-  line-height:1.4;
-  color:var(--navy);
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.campus-news-desc{
-  margin-top:3px;
-  font-size:10.5px;
-  line-height:1.4;
-  color:var(--muted);
-  display:-webkit-box;
-  -webkit-box-orient:vertical;
-  -webkit-line-clamp:2;
-  overflow:hidden;
-}
-
-.campus-news-date{
-  margin-top:auto;
-  font-size:9.5px;
-  color:var(--muted);
-  text-align:right;
-}
 
   /* ===== layout ===== */
   .layout{display:flex;gap:20px;align-items:flex-start;}
@@ -610,16 +556,10 @@
             </div>
           </div>
 
-<div class="card">
-  <h2>
-    <span class="htitle">
-      <svg class="icon"><use href="#i-inbox"/></svg>
-      교내 뉴스
-    </span>
-    <a class="more" href="#">더보기 +</a>
-  </h2>
-  <div class="inner" id="campusNewsList"></div>
-</div>
+          <div class="card">
+            <h2><span class="htitle"><svg class="icon"><use href="#i-inbox"/></svg>교내 뉴스</span><a class="more" href="#" onclick="goPage('guestbook');return false;">더보기 +</a></h2>
+            <div class="inner" id="recentPostsBox"></div>
+          </div>
 
         </div>
       </div>
@@ -995,39 +935,18 @@ async function addGuestbook() {
 
 function renderRecentPosts(){
   const el = document.getElementById('recentPostsBox');
-
-  const news = [
-    {
-      title: '2026학년도 2학기 수강신청 및 학사일정 안내',
-      desc: '2026학년도 2학기 수강신청 일정과 주요 학사일정을 안내드립니다.',
-      date: '2026.08.25',
-      image: 'images/news01.jpg'
-    },
-    {
-      title: '교내 도서관 운영시간 변경 안내',
-      desc: '2학기 개강에 따라 중앙도서관 운영시간이 변경됩니다.',
-      date: '2026.08.22',
-      image: 'images/news02.jpg'
-    },
-    {
-      title: '2026학년도 2학기 학생회 정기회의 개최',
-      desc: '학생회 정기회의가 개최될 예정이오니 많은 관심 바랍니다.',
-      date: '2026.08.20',
-      image: 'images/news03.jpg'
-    }
-  ];
-
-  el.innerHTML = news.map(n => `
-    <div class="campus-news-item">
-      <img class="campus-news-thumb" src="${n.image}" alt="">
-      <div class="campus-news-text">
-        <div class="campus-news-title">${n.title}</div>
-        <div class="campus-news-desc">${n.desc}</div>
-        <div class="campus-news-date">${n.date}</div>
-      </div>
-    </div>
-  `).join('');
+  if(guestbook.length === 0){
+    el.innerHTML = '<div style="font-size:12.5px;color:var(--muted);">아직 등록된 글이 없습니다. 첫 글을 작성해보세요.</div>';
+    return;
+  }
+  const items = guestbook.slice(-3).reverse().map(g=>`
+    <div style="font-size:12.5px;padding:7px 0;border-bottom:1px dashed var(--border);">
+      <span style="color:var(--navy);">●</span> ${escapeHtml(g.msg.length>28? g.msg.slice(0,28)+'…' : g.msg)}
+      <span style="float:right;color:var(--muted);font-size:10.5px;">${escapeHtml(g.name)}</span>
+    </div>`).join('');
+  el.innerHTML = items;
 }
+
 function renderFolders(){
   const el = document.getElementById('folderList');
   el.innerHTML = folders.map(f=>`
@@ -1129,7 +1048,6 @@ initGalleryCaptions();
 renderSystemClock();
 setInterval(renderSystemClock, 1000);
 updateTopstripCounts();
-renderCampusNews();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
