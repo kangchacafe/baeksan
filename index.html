@@ -557,7 +557,7 @@
           </div>
 
           <div class="card">
-            <h2><span class="htitle"><svg class="icon"><use href="#i-inbox"/></svg>교내 뉴스</span><a class="more" href="#" onclick="goPage('guestbook');return false;">더보기 +</a></h2>
+            <h2><span class="htitle"><svg class="icon"><use href="#i-inbox"/></svg>최근 게시글</span><a class="more" href="#" onclick="goPage('guestbook');return false;">더보기 +</a></h2>
             <div class="inner" id="recentPostsBox"></div>
           </div>
 
@@ -767,7 +767,7 @@ const notices = [
 신청 안내
 ■ 신청 대상: 1998학년도 법학과 신입생
 ■ 신청 기간: 1998. 02. 1. ~ 02. 27.
-■ 신청 방법: 4층 법학과 학생회실
+■ 신청 방법: 온라인 신청서 작성
 ■ 수령 방법: 추후 별도 안내
 
 유의사항
@@ -1021,7 +1021,7 @@ document.querySelectorAll('#mainnav button').forEach(b=>{
 });
 
 function fakeLogin(){
-  alert('로그인에 실패했습니다. 본 페이지는 백산대학교 재학생만 이용할 수 있습니다.');
+  alert('본 페이지는 안내용 화면으로, 실제 로그인 기능은 제공되지 않습니다.행사 관련 문의는 법학과 학생회로 연락 바랍니다.');
 }
 
 /* ---------------- system clock (event countdown) ---------------- */
@@ -1047,6 +1047,7 @@ renderFolders();
 initGalleryCaptions();
 renderSystemClock();
 setInterval(renderSystemClock, 1000);
+updateTopstripCounts();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
